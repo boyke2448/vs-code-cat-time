@@ -14,8 +14,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "cat-time.get-random-cat",
-        "title": "Cat time"
+        "command": "vs-code-cat-time.helloWorld",
+        "title": "Hello World"
       }
     ]
   },
@@ -43,5 +43,9 @@
     "webpack-cli": "^5.1.4",
     "@vscode/test-cli": "^0.0.4",
     "@vscode/test-electron": "^2.3.8"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/boyke2448/vs-code-cat-time.git"
+  },
 }
