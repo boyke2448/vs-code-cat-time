@@ -14,8 +14,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "vs-code-cat-time.helloWorld",
-        "title": "Hello World"
+        "command": "cat-time.get-random-cat",
+        "title": "Cat time"
       }
     ]
   },
