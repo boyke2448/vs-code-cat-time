@@ -1,6 +1,6 @@
 {
   "name": "vs-code-cat-time",
-  "displayName": "vs-code-cat-time",
+  "displayName": "Cat time",
   "description": "You need a break when coding? I believe... it's cat time. Silly VS Code",
   "version": "0.0.1",
   "engines": {
