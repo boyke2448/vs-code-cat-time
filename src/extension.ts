@@ -11,6 +11,7 @@ export function activate(context: vscode.ExtensionContext) {
         'Congratulations, your extension "vs-code-cat-time" is now active!'
     );
 
+    let panel: vscode.WebviewPanel | null = null;
     // The command has been defined in the package.json file
     // Now provide the implementation of the command with registerCommand
     // The commandId parameter must match the command field in package.json
@@ -22,14 +23,17 @@ export function activate(context: vscode.ExtensionContext) {
             )
                 .then((res) => res.json())
                 .then((json: any) => {
-                    const panel = vscode.window.createWebviewPanel(
-                        "CatTime",
-                        "Cat Time",
-                        vscode.ViewColumn.One,
-                        {}
-                    );
+                    if (!panel) {
+                        panel = vscode.window.createWebviewPanel(
+                            "CatTime",
+                            "Cat Time",
+                            vscode.ViewColumn.One,
+                            {}
+                        );
+                    }
                     panel.webview.html = getWebviewContent(
-                        json["data"]["images"]["original"]["url"]
+                        json["data"]["images"]["original"]["url"],
+                        json["data"]["source"]
                     );
                 });
             if (vscode.debug.activeDebugSession) {
@@ -43,7 +47,7 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(disposable);
 }
 
-function getWebviewContent(url: string) {
+function getWebviewContent(url: string, source_url?: string) {
     return `<!DOCTYPE html>
 	<html lang="en">
 	<head>
@@ -54,6 +58,8 @@ function getWebviewContent(url: string) {
 	<body>
 	<h1>It's Cat Time!</h1>
 		<img style="display: block;-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 90%);" src="${url}" />
+        <p>Image from <a href="https://giphy.com/">Giphy</a></p>
+        <p>Source: <a href="${source_url}">${source_url}</a></p>
 	</body>
 	</html>`;
 }
