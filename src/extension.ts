@@ -2,6 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 
+const API_KEY = "mPoeLaRLOWLieoTAQu3A4yixa5tyBrHy";
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -19,7 +20,7 @@ export function activate(context: vscode.ExtensionContext) {
         "cat-time.get-random-cat",
         () => {
             fetch(
-                "https://api.giphy.com/v1/gifs/random?api_key=ydLAJgNerLpayCYF3LnKz65VTmSpgUFB&tag=cat&rating=pg-13"
+                `https://api.giphy.com/v1/gifs/random?api_key=${API_KEY}&tag=cat&rating=pg-13`
             )
                 .then((res) => res.json())
                 .then((json: any) => {
