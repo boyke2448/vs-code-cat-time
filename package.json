@@ -2,9 +2,16 @@
   "name": "vs-code-cat-time",
   "displayName": "Cat time",
   "description": "You need a break when coding? I believe... it's cat time. Silly VS Code",
-  "version": "0.0.1",
+  "version": "0.1.0",
+  "license": "MIT",
+  "publisher": "Boyke",	
+  "homepage": "https://github.com/boyke2448/vs-code-cat-time",
   "engines": {
     "vscode": "^1.85.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/boyke2448/vs-code-cat-time.git"
   },
   "categories": [
     "Other"
@@ -43,9 +50,5 @@
     "webpack-cli": "^5.1.4",
     "@vscode/test-cli": "^0.0.4",
     "@vscode/test-electron": "^2.3.8"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/boyke2448/vs-code-cat-time.git"
   }
 }
