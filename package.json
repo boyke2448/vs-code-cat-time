@@ -3,7 +3,7 @@
   "displayName": "Cat time",
   "description": "You need a break when coding? I believe... it's cat time. Silly VS Code",
   "version": "0.1.1",
-  "license": "MIT",
+  "license": "LGPL-3.0-only",
   "publisher": "Boyke",	
   "homepage": "https://github.com/boyke2448/vs-code-cat-time",
   "engines": {
