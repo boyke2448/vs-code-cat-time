@@ -19,18 +19,29 @@ export function activate(context: vscode.ExtensionContext) {
     let disposable = vscode.commands.registerCommand(
         "cat-time.get-random-cat",
         () => {
+            if (panel == null) {
+                panel = vscode.window.createWebviewPanel(
+                    "CatTime",
+                    "Cat Time",
+                    vscode.ViewColumn.One,
+                    {}
+                );
+                panel.onDidDispose(() => {
+                    panel = null;
+                });
+            }
+            panel.webview.html = getWebViewLoadingContent();
+
             fetch(
                 `https://api.giphy.com/v1/gifs/random?api_key=${API_KEY}&tag=cat&rating=pg-13`
             )
                 .then((res) => res.json())
                 .then((json: any) => {
-                    if (!panel) {
-                        panel = vscode.window.createWebviewPanel(
-                            "CatTime",
-                            "Cat Time",
-                            vscode.ViewColumn.One,
-                            {}
+                    if (panel == null) {
+                        vscode.window.showErrorMessage(
+                            "Cat time: Error creating webview panel"
                         );
+                        return;
                     }
                     panel.reveal();
                     panel.webview.html = getWebviewContent(
@@ -38,17 +49,24 @@ export function activate(context: vscode.ExtensionContext) {
                         json["data"]["source"]
                     );
                 });
-            if (vscode.debug.activeDebugSession) {
-                console.log("VS Code is currently debugging");
-            } else {
-                console.log("VS Code is not currently debugging");
-            }
         }
     );
 
     context.subscriptions.push(disposable);
 }
 
+function getWebViewLoadingContent() {
+    return `<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">		
+    </head>
+    <body>
+    <h1>Loading...</h1>
+    </body>
+    </html>`;
+}
 function getWebviewContent(url: string, source_url?: string) {
     return `<!DOCTYPE html>
 	<html lang="en">
@@ -67,4 +85,6 @@ function getWebviewContent(url: string, source_url?: string) {
 }
 
 // This method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() {
+    console.log("deactivated");
+}
