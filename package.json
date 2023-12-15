@@ -2,7 +2,7 @@
   "name": "vs-code-cat-time",
   "displayName": "Cat time",
   "description": "You need a break when coding? I believe... it's cat time. Silly VS Code",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "publisher": "Boyke",	
   "homepage": "https://github.com/boyke2448/vs-code-cat-time",
