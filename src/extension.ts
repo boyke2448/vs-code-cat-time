@@ -32,6 +32,7 @@ export function activate(context: vscode.ExtensionContext) {
                             {}
                         );
                     }
+                    panel.reveal();
                     panel.webview.html = getWebviewContent(
                         json["data"]["images"]["original"]["url"],
                         json["data"]["source"]
